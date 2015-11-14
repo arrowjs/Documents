@@ -60,3 +60,22 @@ Use:
 ```
     {{ test }}
 ```
+
+
+#### Core support Filter
+
+
+#### Core support function
+
+link_to(name,option) : route function
+```
+    {{ link_to('about',{id : 1}) }}
+    // get route name about and replace id = 1; result: /about/1;
+```
+
+t(key) : translate function
+
+```
+    t('module_name')
+    //check folder lang and get result of key 'module_name'
+```
