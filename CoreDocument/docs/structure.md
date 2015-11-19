@@ -57,9 +57,13 @@ Với mỗi feature cần có path để lấy thông tin:
             "file": "feature.js", //File config từng feature
             "singleton" : false   //Định nghĩa loại feature - mặc định là false         
         },
- ```
+```
+ 
+ 
 	
 Mỗi feature trong Arrowjs được cấu trúc theo mô hình MVC: 
+
+
 
 ```
 		"extend": {
@@ -90,17 +94,17 @@ Mỗi feature trong Arrowjs được cấu trúc theo mô hình MVC:
         }
 
 ```	
+
 Với mỗi thành phẩn của feature đều định nghĩa path để có thể lấy được dữ liệu.
 path của các thành phần có 2 loại : nhận vào object hoặc array Object.
+
+
 
 ```
 	"path": {
        "folder": "models", 
        "file": "*.js",
 	}
-```
-
-```
 	"path": [{
        "folder": "backend/models", 
        "file": "*.js",
@@ -108,9 +112,10 @@ path của các thành phần có 2 loại : nhận vào object hoặc array Obj
        "folder": "frontend/models", 
        "file": "*.js",
 	}]
-```
-## Thuộc tích của path
 
+```
+
+## Thuộc tích của path
 
 ```
 	"path": {
@@ -121,33 +126,49 @@ path của các thành phần có 2 loại : nhận vào object hoặc array Obj
        "singleton" : true,
        "authenticate" :  true
    }
+   
 ```
+
 #### Folder 
+
 Là chuỗi hoặc array chuỗi xác định thư mục chứa dữ liệu :
+
 
 ```
  "folder": "models", 
  or
  "folder" : ["models","views"]
+ 
 ```
+
+
 Chuỗi bắt đầu từ "/" sẽ tính từ thư mục gốc của ứng dụng Arrowjs.
 Chuỗi còn lại tính từ thư mục của từng feature,
 
 Ký tự đặc biệt
 
+
+
 ```
 "folder" : "view/:theme/$component"
 ```
+
+
 ":theme" : truyền giá trị config có key là "theme"" vào trong đường dẫn
 "$component" : truyền vào tên của feature hiện thời.
 
 #### File
+
 là chuỗi định nghĩa file lấy cấu hình
+
+
 ```
 "file": "*.js", 
  or
  "file" : index.js
+ 
 ```
+
 Với "*.js" Arrowjs sẽ loading toàn bộ file javascript trong thư mục.
 #### Name
 là chuỗi tên định danh giúp tạo ra các namespace:
@@ -163,6 +184,7 @@ là chuỗi tên định danh giúp tạo ra các namespace:
         "name" : "backend"
 	}]
 ```
+
 Controller sau khi loading sẽ chia vào theo namespace . Bạn phải gọi rõ ràng controller.backend , controller.frontend
 
 #### Prefix
@@ -175,6 +197,8 @@ Controller sau khi loading sẽ chia vào theo namespace . Bạn phải gọi r�
 }
       
 ```
+
+
 Chuỗi định danh đường dẫn chung của Route (chỉ áp dụng với route settings). Ở trên các route từ thằng backend/routes đều bắt đầu bằng "/admin" . Có thể  override setting này tại từng route.
 
 #### Singleton
@@ -182,6 +206,8 @@ Với các tính năng trong hệ thống mặc định là singleton.
 
 #### Authenticate
 Chuỗi định danh cấu hình passport hoặc bật tính năng passport. Chỉ áp dụng cho route . 
+
+
 ```
 "route" : {
 	"folder": "backend/routes", 
