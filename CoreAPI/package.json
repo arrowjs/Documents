@@ -1,0 +1,25 @@
+{
+  "name": "coreapi",
+  "version": "1.0.0",
+  "description": "API documentation of Arrowjs.io Core",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/arrowjs/Documents/tree/master/CoreAPI"
+  },
+  "keywords": [
+    "Core",
+    "API"
+  ],
+  "author": "Trinh Minh Cuong",
+  "license": "MIT",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-jsdoc": "^1.0.0",
+    "ink-docstrap": "^0.5.2",
+    "jsdoc": "git+https://github.com/jsdoc3/jsdoc.git"
+  }
+}

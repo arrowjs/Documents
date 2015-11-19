@@ -1,4 +1,44 @@
 Folder structure
 ========================
 
-- apidocs: 
+- configs:
+	- env
+	- middleware
+	- strategies
+		- facebook.js
+		- google.js
+		- local.js
+	- config.js
+	- database.js
+	- express.js
+	- mail.js
+	- passport.js
+	- redis.js
+	- session.js
+	- structure.js
+	- view.js
+	- websocket.js 	
+- example:
+	- HelloWorld
+	- ThemeSupport 	
+- helpers:
+- libs:
+  - ArrowApplication.js
+  - ArrStack.js
+  - buildStructure.js
+  - database.js
+  - global_function.js
+  - i18n.js
+  - logger.js
+  - RedisCache.js
+  - ViewEngine.js
+- manager:
+  - handleAttribute
+  - helper
+  - ConfigManager.js
+  - DefaultManager.js
+  - SystemManager.js
+- templateExtends:
+  - filter
+  - Function
+- testing:

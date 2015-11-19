@@ -34,7 +34,7 @@
 			<li class="dropdown">
 				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="global.html#createDirectory">createDirectory</a></li><li><a href="global.html#createNewEnv">createNewEnv</a></li><li><a href="global.html#expressApp">expressApp</a></li><li><a href="global.html#fs">fs</a></li><li><a href="global.html#getAllCustomFilter">getAllCustomFilter</a></li><li><a href="global.html#getAllExtensions">getAllExtensions</a></li><li><a href="global.html#getAllFunction">getAllFunction</a></li><li><a href="global.html#getAllGlobalVariable">getAllGlobalVariable</a></li><li><a href="global.html#getAllVariable">getAllVariable</a></li><li><a href="global.html#getGlobbedFiles">getGlobbedFiles</a></li><li><a href="global.html#getInfo">getInfo</a></li><li><a href="global.html#getOverrideCorePath">getOverrideCorePath</a></li><li><a href="global.html#getRawConfig">getRawConfig</a></li><li><a href="global.html#getStructure">getStructure</a></li><li><a href="global.html#handleComponentRouteSetting">handleComponentRouteSetting</a></li><li><a href="global.html#handleView">handleView</a></li><li><a href="global.html#loadRouteAndRender">loadRouteAndRender</a></li><li><a href="global.html#makeRender">makeRender</a></li><li><a href="global.html#mergePath">mergePath</a></li><li><a href="global.html#overrideCorePath">overrideCorePath</a></li><li><a href="global.html#overrideViewRender">overrideViewRender</a></li><li><a href="global.html#sendMail">sendMail</a></li>
+					<li><a href="global.html#createDirectory">createDirectory</a></li><li><a href="global.html#createNewEnv">createNewEnv</a></li><li><a href="global.html#expressApp">expressApp</a></li><li><a href="global.html#fs">fs</a></li><li><a href="global.html#getAllCustomFilter">getAllCustomFilter</a></li><li><a href="global.html#getAllExtensions">getAllExtensions</a></li><li><a href="global.html#getAllFunction">getAllFunction</a></li><li><a href="global.html#getAllGlobalVariable">getAllGlobalVariable</a></li><li><a href="global.html#getAllVariable">getAllVariable</a></li><li><a href="global.html#getGlobbedFiles">getGlobbedFiles</a></li><li><a href="global.html#getInfo">getInfo</a></li><li><a href="global.html#getOverrideCorePath">getOverrideCorePath</a></li><li><a href="global.html#getRawConfig">getRawConfig</a></li><li><a href="global.html#getStructure">getStructure</a></li><li><a href="global.html#handleComponentRouteSetting">handleComponentRouteSetting</a></li><li><a href="global.html#handleView">handleView</a></li><li><a href="global.html#loadLanguage">loadLanguage</a></li><li><a href="global.html#loadRouteAndRender">loadRouteAndRender</a></li><li><a href="global.html#logger">logger</a></li><li><a href="global.html#makeRender">makeRender</a></li><li><a href="global.html#mergePath">mergePath</a></li><li><a href="global.html#overrideCorePath">overrideCorePath</a></li><li><a href="global.html#overrideViewRender">overrideViewRender</a></li>
 				</ul>
 			</li>
 			
@@ -263,23 +263,23 @@ exports.getAllGlobalVariable = function (env) {
     return env;
 };
 
-/**
- * Send mail with provided options
- * @param {object} mailOptions
- * @returns {Promise}
- */
-exports.sendMail = function (mailOptions) {
-    return new Promise(function (fulfill, reject) {
-        __mailSender.sendMail(mailOptions, function (err, info) {
-
-            if (err) {
-                reject(err);
-            } else {
-                fulfill(info);
-            }
-        });
-    });
-};
+///**
+// * Send mail with provided options
+// * @param {object} mailOptions
+// * @returns {Promise}
+// */
+//exports.sendMail = function (mailOptions) {
+//    return new Promise(function (fulfill, reject) {
+//        __mailSender.sendMail(mailOptions, function (err, info) {
+//
+//            if (err) {
+//                reject(err);
+//            } else {
+//                fulfill(info);
+//            }
+//        });
+//    });
+//};
 
 /**
  * Get files by glob patterns
@@ -402,19 +402,19 @@ module.exports.getRawConfig = function getRawConfig() {
             throw err
         }
     }
-
-    //get mail.js
-    try {
-        fs.accessSync(__base + 'config/mail.js');
-        _.assign(conf, require(__base + 'config/mail'));
-    } catch (err) {
-        if (err.code === 'ENOENT') {
-            fsEx.copySync(path.resolve(__dirname, '..', 'config/mail.js'), __base + 'config/mail.js');
-            _.assign(conf, require(__base + 'config/mail'));
-        } else {
-            throw err
-        }
-    }
+    //
+    ////get mail.js
+    //try {
+    //    fs.accessSync(__base + 'config/mail.js');
+    //    _.assign(conf, require(__base + 'config/mail'));
+    //} catch (err) {
+    //    if (err.code === 'ENOENT') {
+    //        fsEx.copySync(path.resolve(__dirname, '..', 'config/mail.js'), __base + 'config/mail.js');
+    //        _.assign(conf, require(__base + 'config/mail'));
+    //    } else {
+    //        throw err
+    //    }
+    //}
 
     //get redis.js
     try {
@@ -609,7 +609,7 @@ exports.createDirectory = function (path) {
 	<br />
 
 <span class="jsdoc-message">
-	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0-dev</a>
+	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a>
 	on 2015 11 19 using the <a
 	href="https://github.com/terryweiss/docstrap">DocStrap template</a>.
 </span>

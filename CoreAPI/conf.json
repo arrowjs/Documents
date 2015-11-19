@@ -8,17 +8,15 @@
   },
   "source": {
     "include": [
-      "helpers",
-      "libs",
-      "manager",
-      "templateExtends"
+      "../../ArrowjsCore/helpers",
+      "../../ArrowjsCore/libs",
+      "../../ArrowjsCore/manager",
+      "../../ArrowjsCore/templateExtends"
     ],
     "exclude": [
-      "apidocs",
-      "config",
-      "docs",
-      "example",
-      "node_modules"
+      "../../ArrowjsCore/config",
+      "../../ArrowjsCore/example",
+      "../../ArrowjsCore/node_modules"
     ],
     "includePattern": ".+\\.js(doc)?$",
     "excludePattern": "(^|\\/|\\\\)_"
