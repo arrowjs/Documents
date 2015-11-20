@@ -27,14 +27,14 @@
 			<li class="dropdown">
 				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="ArrowApplication.html">ArrowApplication</a></li><li><a href="DefaultManager.html">DefaultManager</a></li><li><a href="SystemManager.html">SystemManager</a></li>
+					<li><a href="ArrowApplication.html">ArrowApplication</a></li><li><a href="ConfigManager.html">ConfigManager</a></li><li><a href="DefaultManager.html">DefaultManager</a></li><li><a href="SystemManager.html">SystemManager</a></li>
 				</ul>
 			</li>
 			
 			<li class="dropdown">
 				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="global.html#createDirectory">createDirectory</a></li><li><a href="global.html#createNewEnv">createNewEnv</a></li><li><a href="global.html#expressApp">expressApp</a></li><li><a href="global.html#fs">fs</a></li><li><a href="global.html#getAllCustomFilter">getAllCustomFilter</a></li><li><a href="global.html#getAllExtensions">getAllExtensions</a></li><li><a href="global.html#getAllFunction">getAllFunction</a></li><li><a href="global.html#getAllGlobalVariable">getAllGlobalVariable</a></li><li><a href="global.html#getAllVariable">getAllVariable</a></li><li><a href="global.html#getGlobbedFiles">getGlobbedFiles</a></li><li><a href="global.html#getInfo">getInfo</a></li><li><a href="global.html#getOverrideCorePath">getOverrideCorePath</a></li><li><a href="global.html#getRawConfig">getRawConfig</a></li><li><a href="global.html#getStructure">getStructure</a></li><li><a href="global.html#handleComponentRouteSetting">handleComponentRouteSetting</a></li><li><a href="global.html#handleView">handleView</a></li><li><a href="global.html#loadLanguage">loadLanguage</a></li><li><a href="global.html#loadRouteAndRender">loadRouteAndRender</a></li><li><a href="global.html#logger">logger</a></li><li><a href="global.html#makeRender">makeRender</a></li><li><a href="global.html#mergePath">mergePath</a></li><li><a href="global.html#overrideCorePath">overrideCorePath</a></li><li><a href="global.html#overrideViewRender">overrideViewRender</a></li>
+					<li><a href="global.html#configureExpressApp">configureExpressApp</a></li><li><a href="global.html#createDirectory">createDirectory</a></li><li><a href="global.html#createNewEnv">createNewEnv</a></li><li><a href="global.html#fs">fs</a></li><li><a href="global.html#getAllCustomFilter">getAllCustomFilter</a></li><li><a href="global.html#getAllExtensions">getAllExtensions</a></li><li><a href="global.html#getAllFunction">getAllFunction</a></li><li><a href="global.html#getAllGlobalVariable">getAllGlobalVariable</a></li><li><a href="global.html#getAllVariable">getAllVariable</a></li><li><a href="global.html#getGlobbedFiles">getGlobbedFiles</a></li><li><a href="global.html#getInfo">getInfo</a></li><li><a href="global.html#getOverrideCorePath">getOverrideCorePath</a></li><li><a href="global.html#getRawConfig">getRawConfig</a></li><li><a href="global.html#getStructure">getStructure</a></li><li><a href="global.html#handleComponentRouteSetting">handleComponentRouteSetting</a></li><li><a href="global.html#handleRole">handleRole</a></li><li><a href="global.html#handleView">handleView</a></li><li><a href="global.html#loadingGlobalFunction">loadingGlobalFunction</a></li><li><a href="global.html#loadLanguage">loadLanguage</a></li><li><a href="global.html#loadRouteAndRender">loadRouteAndRender</a></li><li><a href="global.html#logger">logger</a></li><li><a href="global.html#makeRender">makeRender</a></li><li><a href="global.html#mergePath">mergePath</a></li><li><a href="global.html#overrideCorePath">overrideCorePath</a></li><li><a href="global.html#overrideViewRender">overrideViewRender</a></li>
 				</ul>
 			</li>
 			
@@ -65,6 +65,7 @@ let events = require('events');
 let path = require('path');
 let _ = require('lodash');
 let Express = require('express');
+let Promise = require('bluebird');
 let Database = require("../libs/database");
 let actionByAttribute = require('./handleAttribute/handleFunction');
 let ViewEngine = require("../libs/ViewEngine");
@@ -267,12 +268,12 @@ class SystemManager extends events.EventEmitter {
                 featureViewEngine = featureViewEngine || ViewEngine(_base,viewEngineSetting,_app);
             }
             if (_.isArray(components[key].views)) {
-                components[key].render = makeRender(featureViewEngine,components[key].views,key)
+                components[key].render = Promise.promisify(makeRender(featureViewEngine,components[key].views,key,_app));
                 components[key].viewEngine = featureViewEngine
             } else {
                 Object.keys(components[key].views).map(function (second_key) {
                     components[key][second_key] = components[key][second_key] || {};
-                    components[key][second_key].render = makeRender(featureViewEngine,components[key][second_key].views,key);
+                    components[key][second_key].render =  Promise.promisify(makeRender(featureViewEngine,components[key][second_key].views,key,_app));
                     components[key][second_key].viewEngine = featureViewEngine
 
                 })
@@ -411,8 +412,7 @@ function handleView(obj, application, componentName) {
  * @returns {Function}
  */
 
-function makeRender(viewEngine,componentView, componentName) {
-    let application = viewEngine.opts.express._arrApplication;
+function makeRender(viewEngine,componentView, componentName,application) {
     return function (view, options, callback) {
 
         var done = callback;

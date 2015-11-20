@@ -27,14 +27,14 @@
 			<li class="dropdown">
 				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="ArrowApplication.html">ArrowApplication</a></li><li><a href="DefaultManager.html">DefaultManager</a></li><li><a href="SystemManager.html">SystemManager</a></li>
+					<li><a href="ArrowApplication.html">ArrowApplication</a></li><li><a href="ConfigManager.html">ConfigManager</a></li><li><a href="DefaultManager.html">DefaultManager</a></li><li><a href="SystemManager.html">SystemManager</a></li>
 				</ul>
 			</li>
 			
 			<li class="dropdown">
 				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="global.html#createDirectory">createDirectory</a></li><li><a href="global.html#createNewEnv">createNewEnv</a></li><li><a href="global.html#expressApp">expressApp</a></li><li><a href="global.html#fs">fs</a></li><li><a href="global.html#getAllCustomFilter">getAllCustomFilter</a></li><li><a href="global.html#getAllExtensions">getAllExtensions</a></li><li><a href="global.html#getAllFunction">getAllFunction</a></li><li><a href="global.html#getAllGlobalVariable">getAllGlobalVariable</a></li><li><a href="global.html#getAllVariable">getAllVariable</a></li><li><a href="global.html#getGlobbedFiles">getGlobbedFiles</a></li><li><a href="global.html#getInfo">getInfo</a></li><li><a href="global.html#getOverrideCorePath">getOverrideCorePath</a></li><li><a href="global.html#getRawConfig">getRawConfig</a></li><li><a href="global.html#getStructure">getStructure</a></li><li><a href="global.html#handleComponentRouteSetting">handleComponentRouteSetting</a></li><li><a href="global.html#handleView">handleView</a></li><li><a href="global.html#loadLanguage">loadLanguage</a></li><li><a href="global.html#loadRouteAndRender">loadRouteAndRender</a></li><li><a href="global.html#logger">logger</a></li><li><a href="global.html#makeRender">makeRender</a></li><li><a href="global.html#mergePath">mergePath</a></li><li><a href="global.html#overrideCorePath">overrideCorePath</a></li><li><a href="global.html#overrideViewRender">overrideViewRender</a></li>
+					<li><a href="global.html#configureExpressApp">configureExpressApp</a></li><li><a href="global.html#createDirectory">createDirectory</a></li><li><a href="global.html#createNewEnv">createNewEnv</a></li><li><a href="global.html#fs">fs</a></li><li><a href="global.html#getAllCustomFilter">getAllCustomFilter</a></li><li><a href="global.html#getAllExtensions">getAllExtensions</a></li><li><a href="global.html#getAllFunction">getAllFunction</a></li><li><a href="global.html#getAllGlobalVariable">getAllGlobalVariable</a></li><li><a href="global.html#getAllVariable">getAllVariable</a></li><li><a href="global.html#getGlobbedFiles">getGlobbedFiles</a></li><li><a href="global.html#getInfo">getInfo</a></li><li><a href="global.html#getOverrideCorePath">getOverrideCorePath</a></li><li><a href="global.html#getRawConfig">getRawConfig</a></li><li><a href="global.html#getStructure">getStructure</a></li><li><a href="global.html#handleComponentRouteSetting">handleComponentRouteSetting</a></li><li><a href="global.html#handleRole">handleRole</a></li><li><a href="global.html#handleView">handleView</a></li><li><a href="global.html#loadingGlobalFunction">loadingGlobalFunction</a></li><li><a href="global.html#loadLanguage">loadLanguage</a></li><li><a href="global.html#loadRouteAndRender">loadRouteAndRender</a></li><li><a href="global.html#logger">logger</a></li><li><a href="global.html#makeRender">makeRender</a></li><li><a href="global.html#mergePath">mergePath</a></li><li><a href="global.html#overrideCorePath">overrideCorePath</a></li><li><a href="global.html#overrideViewRender">overrideViewRender</a></li>
 				</ul>
 			</li>
 			
@@ -62,6 +62,9 @@
         <h2>
         ArrowApplication
         </h2>
+        
+            <div class="class-description">Singleton object. It is heart of Arrowjs.io web app. it wraps Express and adds following functions:
+support Redis, multi-languages, passport, check permission and socket.io / websocket</div>
         
     
 </header>
@@ -171,7 +174,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="libs_ArrowApplication.js.html">libs/ArrowApplication.js</a>,
-				 <a href="libs_ArrowApplication.js.html#sunlight-1-line-32">line 32</a>
+				 <a href="libs_ArrowApplication.js.html#sunlight-1-line-29">line 29</a>
 			</li>
 		</ul>
 	</dd>
@@ -228,6 +231,11 @@
 <dd>
     
     
+    <div class="description">
+        When user requests an URL, execute this function after server checks in session if user has authenticates
+This function always runs regardless user has authenticated or not
+    </div>
+    
 
     
 
@@ -316,7 +324,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="libs_ArrowApplication.js.html">libs/ArrowApplication.js</a>,
-				 <a href="libs_ArrowApplication.js.html#sunlight-1-line-128">line 128</a>
+				 <a href="libs_ArrowApplication.js.html#sunlight-1-line-162">line 162</a>
 			</li>
 		</ul>
 	</dd>
@@ -355,6 +363,12 @@
 <dd>
     
     
+    <div class="description">
+        When user requests an URL, execute this function before server checks in session if user has authenticates
+If web app does not require authentication, beforeAuthenticate and afterAuthenticate are same. <br>
+beforeAuthenticate > authenticate > afterAuthenticate
+    </div>
+    
 
     
 
@@ -443,7 +457,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="libs_ArrowApplication.js.html">libs/ArrowApplication.js</a>,
-				 <a href="libs_ArrowApplication.js.html#sunlight-1-line-117">line 117</a>
+				 <a href="libs_ArrowApplication.js.html#sunlight-1-line-150">line 150</a>
 			</li>
 		</ul>
 	</dd>
@@ -475,7 +489,7 @@
         
             
 <dt>
-    <h4 class="name" id="start"><span class="type-signature"></span>start<span class="signature">()</span><span class="type-signature"> &rarr; {Promise.&lt;T>}</span></h4>
+    <h4 class="name" id="start"><span class="type-signature"></span>start<span class="signature">(setting)</span><span class="type-signature"></span></h4>
     
     
 </dt>
@@ -492,6 +506,50 @@
     
     
     
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+
+		<th>Type</th>
+
+		
+
+		
+
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+
+	<tbody>
+	
+
+        <tr>
+            
+                <td class="name"><code>setting</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">passport: boolean, role: boolean</td>
+        </tr>
+
+	
+	</tbody>
+</table>
+
     
     
     
@@ -530,7 +588,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="libs_ArrowApplication.js.html">libs/ArrowApplication.js</a>,
-				 <a href="libs_ArrowApplication.js.html#sunlight-1-line-139">line 139</a>
+				 <a href="libs_ArrowApplication.js.html#sunlight-1-line-173">line 173</a>
 			</li>
 		</ul>
 	</dd>
@@ -555,25 +613,6 @@
     
     
     
-    <h5>Returns:</h5>
-    
-            
-
-
-<dl>
-	<dt>
-		Type
-	</dt>
-	<dd>
-		
-<span class="param-type">Promise.&lt;T></span>
-
-
-	</dd>
-</dl>
-
-
-        
     
     
 </dd>
